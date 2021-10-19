@@ -64,5 +64,14 @@ app.post("/people", async (req, res) => {
     }
 })
 
+//delete
+app.delete("/people/:id", async (req, res) => {
+    try {
+        res.json(await People.findByIdAndUpdate(req.params.id, req.body, {new: true}))
+    } catch (error) {
+        res.status(400).json(error)
+    }
+})
+
 //listner
 app.listen(PORT, () => console.log(`listening on PORT ${PORT}`));
